@@ -2,8 +2,8 @@ name: hello world
 on: 
   push:
     branches: [main,master]
-jobs:
+jobs: 
   say-hello:  
-    runs-on: windows
-    steps: 
-      -run: echo Hello word
+    runs-on: ubuntu-latest
+    steps:  
+      -run: echo Hello World
