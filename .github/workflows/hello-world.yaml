@@ -1,10 +1,26 @@
-name: hello world
-on: 
+name: Test Action
+on:
   push:
-    branches: [main,master]
-jobs: 
-  say-hello:  
+    branches:
+      - main
+
+jobs:
+  build:
     runs-on: ubuntu-latest
-    steps:  
-      - run: echo "TODAY=$(date +%y-%m-%d)" >>$GITHUB_ENV
-      - run: echo Hello World, today is $TODAY
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Run tests
+      run: |
+        # Thực hiện các lệnh kiểm tra ở đây
+        echo "Running tests..."
+        pytest
+        
+    - name: Build and deploy
+      run: |
+        # Thực hiện quy trình xây dựng và triển khai ở đây
+        echo "Building and deploying..."
+        ./build.sh
+        ./deploy.sh
