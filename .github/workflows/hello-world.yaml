@@ -3,21 +3,21 @@ on:
   push:
     branches: [main,master]
 jobs:
-  build:
-    runs-on: ubuntu-latest    
+  test:
+    name: Chạy thử
+    runs-on: ubuntu-latest
+    
     steps:
-    - name: Checkout repository
+    - name: Checkout mã nguồn
       uses: actions/checkout@v2
       
-    - name: Run tests
-      run: |
-        # Thực hiện các lệnh kiểm tra ở đây
-        echo "Running tests..."
-        pytest
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
         
-    - name: Build and deploy
-      run: |
-        # Thực hiện quy trình xây dựng và triển khai ở đây
-        echo "Building and deploying..."
-        ./build.sh
-        ./deploy.sh
+    - name: Cài đặt các phụ thuộc
+      run: npm install
+      
+    - name: Chạy các bài kiểm tra
+      run: npm test
